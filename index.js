@@ -164,7 +164,7 @@ if (!discordToken) {
 }
 
 console.log(`Starting bot with Node ${process.version}`);
-console.log('Build: Rvxth DJ V10 cookie-diagnostics');
+console.log('Build: Rvxth DJ V11 wider-format-selector');
 console.log(`Working directory: ${process.cwd()}`);
 console.log(`Discord token source: ${tokenEnv.name}`);
 console.log(`Discord token loaded: ${discordToken.length} characters`);
@@ -182,10 +182,12 @@ const ytDlpBinary = process.platform === 'win32' ? 'yt-dlp.exe' : 'yt-dlp';
 const ytDlpPath =
   process.env.YTDLP_PATH?.trim() ||
   path.join(process.cwd(), 'node_modules', 'youtube-dl-exec', 'bin', ytDlpBinary);
+const ytDlpFormat = process.env.YTDLP_FORMAT?.trim() || 'bestaudio*/best[acodec!=none]/best';
 const youtubeCookiesPath = writeYoutubeCookiesFile();
 const expiredInteractions = new WeakSet();
 
 console.log(`yt-dlp path: ${ytDlpPath}`);
+console.log(`yt-dlp format: ${ytDlpFormat}`);
 
 function ytDlpArgs(...args) {
   if (!youtubeCookiesPath) {
@@ -795,7 +797,7 @@ async function playNext(guildId) {
       '--output',
       '-',
       '--format',
-      'bestaudio/best',
+      ytDlpFormat,
       '--quiet',
       '--no-warnings',
       '--no-playlist'
