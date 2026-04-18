@@ -1,0 +1,5 @@
+[phases.setup]
+aptPkgs = ["...", "python3", "ffmpeg"]
+
+[start]
+cmd = "node index.js"
