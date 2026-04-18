@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schema.railpack.com",
+  "provider": "node",
+  "buildAptPackages": ["python3", "ffmpeg"],
+  "packages": {
+    "node": "22",
+    "python": "3.13"
+  },
+  "deploy": {
+    "startCommand": "node index.js",
+    "aptPackages": ["python3", "ffmpeg"]
+  }
+}
